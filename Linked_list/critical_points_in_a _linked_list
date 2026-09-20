@@ -1,0 +1,31 @@
+// Codechef
+// C Language
+
+// CODE
+int countCriticalPoints(struct ListNode* head) {
+    if( head == NULL || head->next == NULL || head->next->next == NULL) {
+        return 0;
+    }
+   struct ListNode* prev ;
+   struct ListNode* curr;
+   struct ListNode* nxt;
+   
+   prev = head;
+   curr = head->next;
+   nxt = head->next->next;
+   
+   int count = 0;
+   
+   while(nxt!=NULL) {
+       if( (curr->val > nxt->val && curr->val > prev->val) 
+       || (curr->val <nxt->val && curr->val <prev->val)) {
+           count++;
+       }
+       
+       prev = prev->next;
+       curr = curr->next;
+       nxt=nxt->next;
+   }
+    
+    return count;
+}
