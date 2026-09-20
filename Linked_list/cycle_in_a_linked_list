@@ -1,0 +1,32 @@
+// Codechef
+// C Language
+
+// CODE
+typedef struct Node NODE;
+NODE *detectCycle(NODE *head){
+    NODE* slow = head;
+    NODE* fast = head;
+    
+    // check cycle exist
+    while(fast!=NULL || fast->next!=NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+        
+        
+        if(slow == fast) {
+            break;
+        }
+    }
+    
+    if ( fast == NULL || fast->next == NULL) {
+        return NULL;
+    }
+    
+    slow = head;
+    while(slow!=fast){
+        slow= slow->next;
+        fast=fast->next;
+    }
+    
+    return slow;
+}
